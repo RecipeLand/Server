@@ -7,7 +7,8 @@ const RecipeSchema = new Schema({
   imgUrl: String,
   category: String,
   description: String,
-  user: { type: Schema.Types.ObjectId, ref: 'User' }
+  user: String
+  // user: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
 const recipe = mongoose.model('Recipe', RecipeSchema);

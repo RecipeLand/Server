@@ -23,6 +23,31 @@ class RecipeController {
       res.status(400).json(err.message)
     })
   }
+
+  static readById(req, res){
+    Recipe.find({_id: req.params.id})
+    .then(recipe => {
+      res.status(201).json(recipe)
+    })
+    .catch(err => {
+      res.status(400).json(err.message)
+    })
+  }
+
+  static readOne(req, res){
+    Recipe.find({$or: [{title: new RegExp(req.query.q, 'i')},
+                        {category: new RegExp(req.query.q, 'i')},
+                        {description: new RegExp(req.query.q, 'i')}
+                      ]
+    })
+    .then(recipes => {
+      res.status(201).json(recipes)
+    })
+    .catch(err => {
+      res.status(400).json(err.message)
+    })
+  }
+
 }
 
 module.exports = RecipeController

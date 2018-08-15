@@ -3,13 +3,22 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var cors = require('cors')
+var cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config()
 
 mongoose.connect(`mongodb://${process.env.dbuser}:${process.env.dbpass}@ds121382.mlab.com:21382/recipeland`, { useNewUrlParser: true });
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('connected to database')
+  // we're connected!
+});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var tumblrRouter = require('./routes/tumblr');
 
 var app = express();
 app.use(cors())

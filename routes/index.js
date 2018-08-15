@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
+const {create, read} = require('../controllers/recipeController')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/', read);
+router.post('/create', create);
 
 module.exports = router;

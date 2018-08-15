@@ -48,6 +48,38 @@ class RecipeController {
     })
   }
 
+
+  static update(req, res){
+    let {title, imgUrl, category, description, user} = req.body
+    Recipe.findByIdAndUpdate(req.params.id,{
+        title, imgUrl, category, description, user
+    },function(err,recipe){
+        if(err){
+          res
+            .status(400)
+            .json(err.message)
+        }
+        else{
+          res
+            .status(201)
+            .json(recipe)
+        }
+    })
+  }
+
+  static deleteRecipe(req, res){
+      Recipe.findByIdAndRemove(req.params.id)
+      .then( recipe =>{
+        res
+        .status(201)
+        .json(recipe) 
+      })
+      .catch( err =>{
+        res
+        .status(400)
+        .json(err.message)  
+      })
+  }
 }
 
 module.exports = RecipeController

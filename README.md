@@ -1,2 +1,2 @@
 # Server
-this is the server side of things
+this is the server side of things.

@@ -15,7 +15,7 @@ class RecipeController {
   }
 
   static read(req, res){
-    Recipe.find({})
+    Recipe.find({}).sort({updatedAt: 'desc'})
     .then(allRecipe => {
       res.status(201).json(allRecipe)
     })

@@ -11,7 +11,7 @@ const RecipeSchema = new Schema({
   // user: { type: Schema.Types.ObjectId, ref: 'User' }
 },
 {
- timestamps : true
+  timestamps: true
 });
 
 const recipe = mongoose.model('Recipe', RecipeSchema);
